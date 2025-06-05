@@ -5,6 +5,11 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
   set(BUILD_SHARED_LIBS ON)
 endif()
 
+
+find_package(cifuzz NO_SYSTEM_ENVIRONMENT_PATH)
+enable_fuzz_testing()
+add_compile_options(-O0 -g)
+
 add_library(csp)
 set_target_properties(csp PROPERTIES C_STANDARD 11)
 set_target_properties(csp PROPERTIES C_EXTENSIONS ON)
@@ -121,3 +126,4 @@ if(NOT CMAKE_SYSTEM_NAME STREQUAL "Zephyr")
     FILES_MATCHING PATTERN "*.h*"
   )
 endif()
+add_subdirectory(cifuzz-spark)
