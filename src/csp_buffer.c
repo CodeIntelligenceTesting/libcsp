@@ -175,7 +175,9 @@ csp_packet_t * csp_buffer_get_always(void) {
 	csp_packet_t * packet = csp_buffer_get_actual(0, 0);
 	if (packet == NULL) {
 		csp_panic("Out of buffers");
-		while(1);
+		// CHANGED FOR FUZZING
+		// while(1);
+		return NULL;
 	}
 	return packet;
 }
