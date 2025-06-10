@@ -1,3 +1,0 @@
-/workspaces/libcsp/src/csp_macro.h
-/workspaces/libcsp/.cifuzz/build/none/none-WTMNWJW7/include/csp/autoconfig.h
-/workspaces/libcsp/.cifuzz/build/none/none-WTMNWJW7/include/csp/autoconfig.h

@@ -24,3 +24,12 @@ GRTAGS
 GTAGS
 .vscode/
 build-docs
+
+.cifuzz*/
+*fuzz*_inputs
+
+lcov.info
+
+!.cifuzz-findings/
+
+.cifuzz-findings/**/.lock
