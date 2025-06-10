@@ -1,0 +1,96 @@
+{
+  "name": "gracious_stingray",
+  "type": "RUNTIME_ERROR",
+  "input_data": "hoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAIaGhoaGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhoaG2wCGAJMBAA==",
+  "logs": [
+    "/workspaces/libcsp/src/arch/posix/pthread_queue.c:211:30: runtime error: member access within null pointer of type 'pthread_queue_t' (aka 'struct pthread_queue_s')",
+    "    #0 0x71ca185a03c9 in pthread_queue_items /workspaces/libcsp/src/arch/posix/pthread_queue.c:211:30",
+    "    #1 0x71ca1859a1b8 in csp_queue_size /workspaces/libcsp/src/arch/posix/csp_queue.c:34:9",
+    "    #2 0x71ca1853a7c0 in csp_buffer_get_actual /workspaces/libcsp/src/csp_buffer.c:46:12",
+    "    #3 0x71ca1853a11b in csp_buffer_get /workspaces/libcsp/src/csp_buffer.c:200:9",
+    "    #4 0x71ca185598c9 in csp_transaction_persistent /workspaces/libcsp/src/csp_io.c:320:26",
+    "    #5 0x71ca1855a4fd in csp_transaction_w_opts /workspaces/libcsp/src/csp_io.c:357:15",
+    "    #6 0x71ca185714f7 in csp_cmp /workspaces/libcsp/src/csp_services.c:217:15",
+    "    #7 0x5cd09e665a9b in LLVMFuzzerTestOneInputNoReturn(unsigned char const*, unsigned long) /workspaces/libcsp/cifuzz-spark/fuzz_csp_cmp.cpp:67:18",
+    "    #8 0x5cd09e665228 in LLVMFuzzerTestOneInput /opt/code-intelligence/cifuzz/share/cmake/../../include/cifuzz/cifuzz.h:36:3",
+    "    #9 0x5cd09e56756a in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_cmp+0x5a56a) (BuildId: 845035646c8448ab820cde856536406ad743c4da)",
+    "    #10 0x5cd09e566b79 in fuzzer::Fuzzer::RunOne(unsigned char const*, unsigned long, bool, fuzzer::InputInfo*, bool, bool*) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_cmp+0x59b79) (BuildId: 845035646c8448ab820cde856536406ad743c4da)",
+    "    #11 0x5cd09e568575 in fuzzer::Fuzzer::MutateAndTestOne() (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_cmp+0x5b575) (BuildId: 845035646c8448ab820cde856536406ad743c4da)",
+    "    #12 0x5cd09e569065 in fuzzer::Fuzzer::Loop(std::vector\u003cfuzzer::SizedFile, std::allocator\u003cfuzzer::SizedFile\u003e\u003e\u0026) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_cmp+0x5c065) (BuildId: 845035646c8448ab820cde856536406ad743c4da)",
+    "    #13 0x5cd09e555515 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_cmp+0x48515) (BuildId: 845035646c8448ab820cde856536406ad743c4da)",
+    "    #14 0x5cd09e581996 in main (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_cmp+0x74996) (BuildId: 845035646c8448ab820cde856536406ad743c4da)",
+    "    #15 0x71ca17e2a1c9 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16",
+    "    #16 0x71ca17e2a28a in __libc_start_main csu/../csu/libc-start.c:360:3",
+    "    #17 0x5cd09e549994 in _start (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_cmp+0x3c994) (BuildId: 845035646c8448ab820cde856536406ad743c4da)",
+    "",
+    "SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior /workspaces/libcsp/src/arch/posix/pthread_queue.c:211:30 MS: 3 InsertByte-ChangeBit-ShuffleBytes-; base unit: 5965df91b8be465e9fda42835cf7006c75eed40c",
+    "artifact_prefix='/tmp/libfuzzer-out-1111192253/'; Test unit written to .cifuzz-findings/gracious_stingray/crashing-input",
+    "AddressSanitizer:DEADLYSIGNAL",
+    "================================================================="
+  ],
+  "details": "undefined behavior: member access within null pointer of type 'pthread_queue_t' (aka 'struct pthread_queue_s')",
+  "more_details": {
+    "id": "undefined_behavior"
+  },
+  "created_at": "2025-06-10T11:30:18.188613135Z",
+  "input_file": ".cifuzz-findings/gracious_stingray/crashing-input",
+  "stack_trace": [
+    {
+      "SourceFile": "src/arch/posix/pthread_queue.c",
+      "Line": 211,
+      "Column": 30,
+      "FrameNumber": 0,
+      "Function": "pthread_queue_items"
+    },
+    {
+      "SourceFile": "src/arch/posix/csp_queue.c",
+      "Line": 34,
+      "Column": 9,
+      "FrameNumber": 1,
+      "Function": "csp_queue_size"
+    },
+    {
+      "SourceFile": "src/csp_buffer.c",
+      "Line": 46,
+      "Column": 12,
+      "FrameNumber": 2,
+      "Function": "csp_buffer_get_actual"
+    },
+    {
+      "SourceFile": "src/csp_buffer.c",
+      "Line": 200,
+      "Column": 9,
+      "FrameNumber": 3,
+      "Function": "csp_buffer_get"
+    },
+    {
+      "SourceFile": "src/csp_io.c",
+      "Line": 320,
+      "Column": 26,
+      "FrameNumber": 4,
+      "Function": "csp_transaction_persistent"
+    },
+    {
+      "SourceFile": "src/csp_io.c",
+      "Line": 357,
+      "Column": 15,
+      "FrameNumber": 5,
+      "Function": "csp_transaction_w_opts"
+    },
+    {
+      "SourceFile": "src/csp_services.c",
+      "Line": 217,
+      "Column": 15,
+      "FrameNumber": 6,
+      "Function": "csp_cmp"
+    },
+    {
+      "SourceFile": "cifuzz-spark/fuzz_csp_cmp.cpp",
+      "Line": 67,
+      "Column": 18,
+      "FrameNumber": 7,
+      "Function": "LLVMFuzzerTestOneInputNoReturn"
+    }
+  ],
+  "fuzz_test": "fuzz_csp_cmp"
+}

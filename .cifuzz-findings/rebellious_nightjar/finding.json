@@ -1,0 +1,97 @@
+{
+  "name": "rebellious_nightjar",
+  "type": "RUNTIME_ERROR",
+  "input_data": "Lwo=",
+  "logs": [
+    "/workspaces/libcsp/src/csp_iflist.c:21:47: runtime error: shift exponent 4294967287 is too large for 32-bit type 'int'",
+    "    #0 0x7a4ae38f5895 in csp_iflist_is_within_subnet /workspaces/libcsp/src/csp_iflist.c:21:47",
+    "    #1 0x7a4ae38f5e7c in csp_iflist_get_by_subnet /workspaces/libcsp/src/csp_iflist.c:52:7",
+    "    #2 0x7a4ae38fcb36 in csp_send_direct /workspaces/libcsp/src/csp_io.c:106:18",
+    "    #3 0x7a4ae38ff5ea in csp_send /workspaces/libcsp/src/csp_io.c:305:2",
+    "    #4 0x7a4ae38ffc90 in csp_transaction_persistent /workspaces/libcsp/src/csp_io.c:329:2",
+    "    #5 0x7a4ae39004fd in csp_transaction_w_opts /workspaces/libcsp/src/csp_io.c:357:15",
+    "    #6 0x7a4ae39154c9 in csp_reboot /workspaces/libcsp/src/csp_services.c:93:2",
+    "    #7 0x5c3c411fd4e1 in LLVMFuzzerTestOneInputNoReturn(unsigned char const*, unsigned long) /workspaces/libcsp/cifuzz-spark/fuzz_csp_reboot.cpp:40:5",
+    "    #8 0x5c3c411fd268 in LLVMFuzzerTestOneInput /opt/code-intelligence/cifuzz/share/cmake/../../include/cifuzz/cifuzz.h:36:3",
+    "    #9 0x5c3c410ff5aa in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_reboot+0x575aa) (BuildId: 7b8c875ccd6decda6d9aca8b953bba1d755f2a19)",
+    "    #10 0x5c3c410febb9 in fuzzer::Fuzzer::RunOne(unsigned char const*, unsigned long, bool, fuzzer::InputInfo*, bool, bool*) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_reboot+0x56bb9) (BuildId: 7b8c875ccd6decda6d9aca8b953bba1d755f2a19)",
+    "    #11 0x5c3c411005b5 in fuzzer::Fuzzer::MutateAndTestOne() (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_reboot+0x585b5) (BuildId: 7b8c875ccd6decda6d9aca8b953bba1d755f2a19)",
+    "    #12 0x5c3c411010a5 in fuzzer::Fuzzer::Loop(std::vector\u003cfuzzer::SizedFile, std::allocator\u003cfuzzer::SizedFile\u003e\u003e\u0026) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_reboot+0x590a5) (BuildId: 7b8c875ccd6decda6d9aca8b953bba1d755f2a19)",
+    "    #13 0x5c3c410ed555 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_reboot+0x45555) (BuildId: 7b8c875ccd6decda6d9aca8b953bba1d755f2a19)",
+    "    #14 0x5c3c411199d6 in main (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_reboot+0x719d6) (BuildId: 7b8c875ccd6decda6d9aca8b953bba1d755f2a19)",
+    "    #15 0x7a4ae342a1c9 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16",
+    "    #16 0x7a4ae342a28a in __libc_start_main csu/../csu/libc-start.c:360:3",
+    "    #17 0x5c3c410e19d4 in _start (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_reboot+0x399d4) (BuildId: 7b8c875ccd6decda6d9aca8b953bba1d755f2a19)",
+    "",
+    "SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior /workspaces/libcsp/src/csp_iflist.c:21:47 MS: 2 CopyPart-InsertByte-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc",
+    "0x2f,0xa,",
+    "/\\012",
+    "artifact_prefix='/tmp/libfuzzer-out-4133486726/'; Test unit written to .cifuzz-findings/rebellious_nightjar/crashing-input",
+    "Base64: Lwo="
+  ],
+  "details": "undefined behavior: shift exponent 4294967287 is too large for 32-bit type 'int'",
+  "more_details": {
+    "id": "shift_exponent"
+  },
+  "created_at": "2025-06-10T11:32:47.484726078Z",
+  "input_file": ".cifuzz-findings/rebellious_nightjar/crashing-input",
+  "stack_trace": [
+    {
+      "SourceFile": "src/csp_iflist.c",
+      "Line": 21,
+      "Column": 47,
+      "FrameNumber": 0,
+      "Function": "csp_iflist_is_within_subnet"
+    },
+    {
+      "SourceFile": "src/csp_iflist.c",
+      "Line": 52,
+      "Column": 7,
+      "FrameNumber": 1,
+      "Function": "csp_iflist_get_by_subnet"
+    },
+    {
+      "SourceFile": "src/csp_io.c",
+      "Line": 106,
+      "Column": 18,
+      "FrameNumber": 2,
+      "Function": "csp_send_direct"
+    },
+    {
+      "SourceFile": "src/csp_io.c",
+      "Line": 305,
+      "Column": 2,
+      "FrameNumber": 3,
+      "Function": "csp_send"
+    },
+    {
+      "SourceFile": "src/csp_io.c",
+      "Line": 329,
+      "Column": 2,
+      "FrameNumber": 4,
+      "Function": "csp_transaction_persistent"
+    },
+    {
+      "SourceFile": "src/csp_io.c",
+      "Line": 357,
+      "Column": 15,
+      "FrameNumber": 5,
+      "Function": "csp_transaction_w_opts"
+    },
+    {
+      "SourceFile": "src/csp_services.c",
+      "Line": 93,
+      "Column": 2,
+      "FrameNumber": 6,
+      "Function": "csp_reboot"
+    },
+    {
+      "SourceFile": "cifuzz-spark/fuzz_csp_reboot.cpp",
+      "Line": 40,
+      "Column": 5,
+      "FrameNumber": 7,
+      "Function": "LLVMFuzzerTestOneInputNoReturn"
+    }
+  ],
+  "fuzz_test": "fuzz_csp_reboot"
+}

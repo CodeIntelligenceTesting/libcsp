@@ -1,0 +1,119 @@
+{
+  "name": "confident_dog",
+  "type": "CRASH",
+  "input_data": "/woAAAAAAAAAAA==",
+  "logs": [
+    "==5421==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000030 (pc 0x7a633f29fff4 bp 0x7fff6dfd5320 sp 0x7fff6dfd5288 T0)",
+    "==5421==The signal is caused by a READ memory access.",
+    "==5421==Hint: address points to the zero page.",
+    "    #0 0x7a633f29fff4 in __pthread_mutex_lock nptl/pthread_mutex_lock.c:80:23",
+    "    #1 0x7a633f54640e in pthread_queue_items /workspaces/libcsp/src/arch/posix/pthread_queue.c:211:2",
+    "    #2 0x7a633f5401b8 in csp_queue_size /workspaces/libcsp/src/arch/posix/csp_queue.c:34:9",
+    "    #3 0x7a633f4e07c0 in csp_buffer_get_actual /workspaces/libcsp/src/csp_buffer.c:46:12",
+    "    #4 0x7a633f4e011b in csp_buffer_get /workspaces/libcsp/src/csp_buffer.c:200:9",
+    "    #5 0x7a633f4ff8c9 in csp_transaction_persistent /workspaces/libcsp/src/csp_io.c:320:26",
+    "    #6 0x7a633f5004fd in csp_transaction_w_opts /workspaces/libcsp/src/csp_io.c:357:15",
+    "    #7 0x7a633f5169c1 in csp_get_buf_free /workspaces/libcsp/src/csp_services.c:172:15",
+    "    #8 0x5ae17eebc92f in LLVMFuzzerTestOneInputNoReturn(unsigned char const*, unsigned long) /workspaces/libcsp/cifuzz-spark/fuzz_csp_get_buf_free_1.cpp:69:19",
+    "    #9 0x5ae17eebc258 in LLVMFuzzerTestOneInput /opt/code-intelligence/cifuzz/share/cmake/../../include/cifuzz/cifuzz.h:36:3",
+    "    #10 0x5ae17edbe59a in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_get_buf_free_1+0x5a59a) (BuildId: 89af0f83a2bd026a212a9a73905cbc7b05b9d155)",
+    "    #11 0x5ae17edbdba9 in fuzzer::Fuzzer::RunOne(unsigned char const*, unsigned long, bool, fuzzer::InputInfo*, bool, bool*) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_get_buf_free_1+0x59ba9) (BuildId: 89af0f83a2bd026a212a9a73905cbc7b05b9d155)",
+    "    #12 0x5ae17edbf5a5 in fuzzer::Fuzzer::MutateAndTestOne() (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_get_buf_free_1+0x5b5a5) (BuildId: 89af0f83a2bd026a212a9a73905cbc7b05b9d155)",
+    "    #13 0x5ae17edc0095 in fuzzer::Fuzzer::Loop(std::vector\u003cfuzzer::SizedFile, std::allocator\u003cfuzzer::SizedFile\u003e\u003e\u0026) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_get_buf_free_1+0x5c095) (BuildId: 89af0f83a2bd026a212a9a73905cbc7b05b9d155)",
+    "    #14 0x5ae17edac545 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_get_buf_free_1+0x48545) (BuildId: 89af0f83a2bd026a212a9a73905cbc7b05b9d155)",
+    "    #15 0x5ae17edd89c6 in main (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_get_buf_free_1+0x749c6) (BuildId: 89af0f83a2bd026a212a9a73905cbc7b05b9d155)",
+    "    #16 0x7a633f22a1c9 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16",
+    "    #17 0x7a633f22a28a in __libc_start_main csu/../csu/libc-start.c:360:3",
+    "    #18 0x5ae17eda09c4 in _start (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_get_buf_free_1+0x3c9c4) (BuildId: 89af0f83a2bd026a212a9a73905cbc7b05b9d155)",
+    "",
+    "==5421==Register values:",
+    "rax = 0x0000000000000001  rbx = 0x00007fff6dfd5360  rcx = 0x0000000000000000  rdx = 0x0000000000000000  ",
+    "rdi = 0x0000000000000020  rsi = 0x0000000000000000  rbp = 0x00007fff6dfd5320  rsp = 0x00007fff6dfd5288  ",
+    " r8 = 0x000000000000007c   r9 = 0x0000524000012000  r10 = 0x00007a633f212b80  r11 = 0x00007a633f29fff0  ",
+    "r12 = 0x0000521000000100  r13 = 0x00005ae17ef22600  r14 = 0x0000502000009c10  r15 = 0x000000000000000a  ",
+    "AddressSanitizer can not provide additional info.",
+    "SUMMARY: AddressSanitizer: SEGV nptl/pthread_mutex_lock.c:80:23 in __pthread_mutex_lockMS: 5 CrossOver-InsertRepeatedBytes-ChangeByte-ShuffleBytes-CMP- DE: \"\\000\\000\\000\\000\\000\\000\\000\\000\"-; base unit: 0b93a0648e4c207f3072bac2a008a584cf7a0f2c",
+    "0xff,0xa,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,",
+    "\\377\\012\\000\\000\\000\\000\\000\\000\\000\\000",
+    "artifact_prefix='/tmp/libfuzzer-out-1326726549/'; Test unit written to .cifuzz-findings/confident_dog/crashing-input",
+    "Base64: /woAAAAAAAAAAA==",
+    "==5421==ABORTING",
+    "MS: 5 CrossOver-InsertRepeatedBytes-ChangeByte-ShuffleBytes-CMP- DE: \"\\000\\000\\000\\000\\000\\000\\000\\000\"-; base unit: 0b93a0648e4c207f3072bac2a008a584cf7a0f2c",
+    "0xff,0xa,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,",
+    "\\377\\012\\000\\000\\000\\000\\000\\000\\000\\000",
+    "artifact_prefix='/tmp/libfuzzer-out-1326726549/'; Test unit written to .cifuzz-findings/confident_dog/crashing-input",
+    "Base64: /woAAAAAAAAAAA=="
+  ],
+  "details": "SEGV on unknown address 0x000000000030 (pc 0x7a633f29fff4 bp 0x7fff6dfd5320 sp 0x7fff6dfd5288 T0)",
+  "more_details": {
+    "id": "segmentation_fault"
+  },
+  "created_at": "2025-06-10T11:27:35.916193576Z",
+  "input_file": ".cifuzz-findings/confident_dog/crashing-input",
+  "stack_trace": [
+    {
+      "SourceFile": "nptl/pthread_mutex_lock.c",
+      "Line": 80,
+      "Column": 23,
+      "FrameNumber": 0,
+      "Function": "__pthread_mutex_lock"
+    },
+    {
+      "SourceFile": "src/arch/posix/pthread_queue.c",
+      "Line": 211,
+      "Column": 2,
+      "FrameNumber": 1,
+      "Function": "pthread_queue_items"
+    },
+    {
+      "SourceFile": "src/arch/posix/csp_queue.c",
+      "Line": 34,
+      "Column": 9,
+      "FrameNumber": 2,
+      "Function": "csp_queue_size"
+    },
+    {
+      "SourceFile": "src/csp_buffer.c",
+      "Line": 46,
+      "Column": 12,
+      "FrameNumber": 3,
+      "Function": "csp_buffer_get_actual"
+    },
+    {
+      "SourceFile": "src/csp_buffer.c",
+      "Line": 200,
+      "Column": 9,
+      "FrameNumber": 4,
+      "Function": "csp_buffer_get"
+    },
+    {
+      "SourceFile": "src/csp_io.c",
+      "Line": 320,
+      "Column": 26,
+      "FrameNumber": 5,
+      "Function": "csp_transaction_persistent"
+    },
+    {
+      "SourceFile": "src/csp_io.c",
+      "Line": 357,
+      "Column": 15,
+      "FrameNumber": 6,
+      "Function": "csp_transaction_w_opts"
+    },
+    {
+      "SourceFile": "src/csp_services.c",
+      "Line": 172,
+      "Column": 15,
+      "FrameNumber": 7,
+      "Function": "csp_get_buf_free"
+    },
+    {
+      "SourceFile": "cifuzz-spark/fuzz_csp_get_buf_free_1.cpp",
+      "Line": 69,
+      "Column": 19,
+      "FrameNumber": 8,
+      "Function": "LLVMFuzzerTestOneInputNoReturn"
+    }
+  ],
+  "fuzz_test": "fuzz_csp_get_buf_free_1"
+}

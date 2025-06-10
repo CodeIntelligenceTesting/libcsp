@@ -1,0 +1,6 @@
+/workspaces/libcsp/include/csp/crypto/csp_sha1.h
+/workspaces/libcsp/include/csp/csp_types.h
+/workspaces/libcsp/.cifuzz/build/none/none-WTMNWJW7/include/csp/autoconfig.h
+/workspaces/libcsp/include/csp/csp_error.h
+/workspaces/libcsp/include/csp/arch/csp_queue.h
+/workspaces/libcsp/.cifuzz/build/none/none-WTMNWJW7/include/csp/autoconfig.h

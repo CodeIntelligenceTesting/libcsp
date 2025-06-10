@@ -1,0 +1,2 @@
+/workspaces/libcsp/include/csp/csp_debug.h
+/workspaces/libcsp/.cifuzz/build/none/none-WTMNWJW7/include/csp/autoconfig.h

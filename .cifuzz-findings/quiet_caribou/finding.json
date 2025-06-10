@@ -1,0 +1,75 @@
+{
+  "name": "quiet_caribou",
+  "type": "RUNTIME_ERROR",
+  "input_data": "IwojCg==",
+  "logs": [
+    "/workspaces/libcsp/src/csp_id.c:233:25: runtime error: shift exponent 4294967287 is too large for 32-bit type 'int'",
+    "    #0 0x72ed8855ea87 in csp_id_is_broadcast /workspaces/libcsp/src/csp_id.c:233:25",
+    "    #1 0x72ed8856718c in csp_send_direct /workspaces/libcsp/src/csp_io.c:127:7",
+    "    #2 0x72ed885695ea in csp_send /workspaces/libcsp/src/csp_io.c:305:2",
+    "    #3 0x72ed8857ea60 in csp_ping /workspaces/libcsp/src/csp_services.c:40:2",
+    "    #4 0x59d5679d2492 in LLVMFuzzerTestOneInputNoReturn(unsigned char const*, unsigned long) /workspaces/libcsp/cifuzz-spark/fuzz_csp_ping.cpp:50:5",
+    "    #5 0x59d5679d2288 in LLVMFuzzerTestOneInput /opt/code-intelligence/cifuzz/share/cmake/../../include/cifuzz/cifuzz.h:36:3",
+    "    #6 0x59d5678d45ca in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_ping+0x525ca) (BuildId: d677f7365fcf385fb7ca835f8a07c35ed89e5e00)",
+    "    #7 0x59d5678d3bd9 in fuzzer::Fuzzer::RunOne(unsigned char const*, unsigned long, bool, fuzzer::InputInfo*, bool, bool*) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_ping+0x51bd9) (BuildId: d677f7365fcf385fb7ca835f8a07c35ed89e5e00)",
+    "    #8 0x59d5678d55d5 in fuzzer::Fuzzer::MutateAndTestOne() (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_ping+0x535d5) (BuildId: d677f7365fcf385fb7ca835f8a07c35ed89e5e00)",
+    "    #9 0x59d5678d60c5 in fuzzer::Fuzzer::Loop(std::vector\u003cfuzzer::SizedFile, std::allocator\u003cfuzzer::SizedFile\u003e\u003e\u0026) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_ping+0x540c5) (BuildId: d677f7365fcf385fb7ca835f8a07c35ed89e5e00)",
+    "    #10 0x59d5678c2575 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_ping+0x40575) (BuildId: d677f7365fcf385fb7ca835f8a07c35ed89e5e00)",
+    "    #11 0x59d5678ee9f6 in main (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_ping+0x6c9f6) (BuildId: d677f7365fcf385fb7ca835f8a07c35ed89e5e00)",
+    "    #12 0x72ed87e2a1c9 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16",
+    "    #13 0x72ed87e2a28a in __libc_start_main csu/../csu/libc-start.c:360:3",
+    "    #14 0x59d5678b69f4 in _start (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_ping+0x349f4) (BuildId: d677f7365fcf385fb7ca835f8a07c35ed89e5e00)",
+    "",
+    "SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior /workspaces/libcsp/src/csp_id.c:233:25 MS: 5 ShuffleBytes-CrossOver-ShuffleBytes-ChangeByte-CopyPart-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc",
+    "0x23,0xa,0x23,0xa,",
+    "#\\012#\\012",
+    "artifact_prefix='/tmp/libfuzzer-out-313479221/'; Test unit written to .cifuzz-findings/quiet_caribou/crashing-input",
+    "Base64: IwojCg==",
+    "    NEW_FUNC[1/42]: 0x72ed885494f8 in csp_buffer_free /workspaces/libcsp/src/csp_buffer.c:106",
+    "    NEW_FUNC[2/42]: 0x72ed88549bf8 in csp_buffer_clone /workspaces/libcsp/src/csp_buffer.c:133"
+  ],
+  "details": "undefined behavior: shift exponent 4294967287 is too large for 32-bit type 'int'",
+  "more_details": {
+    "id": "shift_exponent"
+  },
+  "created_at": "2025-06-10T11:29:45.358198994Z",
+  "input_file": ".cifuzz-findings/quiet_caribou/crashing-input",
+  "stack_trace": [
+    {
+      "SourceFile": "src/csp_id.c",
+      "Line": 233,
+      "Column": 25,
+      "FrameNumber": 0,
+      "Function": "csp_id_is_broadcast"
+    },
+    {
+      "SourceFile": "src/csp_io.c",
+      "Line": 127,
+      "Column": 7,
+      "FrameNumber": 1,
+      "Function": "csp_send_direct"
+    },
+    {
+      "SourceFile": "src/csp_io.c",
+      "Line": 305,
+      "Column": 2,
+      "FrameNumber": 2,
+      "Function": "csp_send"
+    },
+    {
+      "SourceFile": "src/csp_services.c",
+      "Line": 40,
+      "Column": 2,
+      "FrameNumber": 3,
+      "Function": "csp_ping"
+    },
+    {
+      "SourceFile": "cifuzz-spark/fuzz_csp_ping.cpp",
+      "Line": 50,
+      "Column": 5,
+      "FrameNumber": 4,
+      "Function": "LLVMFuzzerTestOneInputNoReturn"
+    }
+  ],
+  "fuzz_test": "fuzz_csp_ping"
+}

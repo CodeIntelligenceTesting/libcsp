@@ -1,0 +1,304 @@
+{
+  "findings": {
+    "able_crocodile": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:24:17.617757699Z",
+      "fuzz_test_name": "fuzz_csp_service_handler_1"
+    },
+    "awesome_lemming": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:31:34.460054792Z",
+      "fuzz_test_name": "fuzz_csp_reboot"
+    },
+    "bold_bat": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:34:29.049526714Z",
+      "fuzz_test_name": "fuzz_csp_transaction_w_opts"
+    },
+    "compassionate_cheetah": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:29:45.337239071Z",
+      "fuzz_test_name": "fuzz_csp_ping"
+    },
+    "condescending_weasel": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:29:22.991607338Z",
+      "fuzz_test_name": "fuzz_csp_ping"
+    },
+    "confident_dog": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:27:35.917005043Z",
+      "fuzz_test_name": "fuzz_csp_get_buf_free_1"
+    },
+    "cranky_cheetah": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:29:01.275413058Z",
+      "fuzz_test_name": "fuzz_csp_ping"
+    },
+    "dangerous_whale": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:28:32.13626168Z",
+      "fuzz_test_name": "fuzz_csp_get_memfree_1"
+    },
+    "dazzling_tapir": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:27:35.909001388Z",
+      "fuzz_test_name": "fuzz_csp_get_buf_free_1"
+    },
+    "determined_macaque": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:26:38.176204779Z",
+      "fuzz_test_name": "fuzz_csp_route_work_1"
+    },
+    "elegant_armadillo": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:26:22.025459582Z",
+      "fuzz_test_name": "fuzz_csp_route_work_1"
+    },
+    "eloquent_nightjar": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:32:47.486779068Z",
+      "fuzz_test_name": "fuzz_csp_reboot"
+    },
+    "focused_baboon": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:31:16.6432143Z",
+      "fuzz_test_name": "fuzz_csp_reboot"
+    },
+    "frosty_duck": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:23:21.747710829Z",
+      "fuzz_test_name": "fuzz_csp_service_handler_1"
+    },
+    "funny_turkey": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:27:25.107503153Z",
+      "fuzz_test_name": "fuzz_csp_get_buf_free_1"
+    },
+    "giggling_tiger": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:24:37.400985262Z",
+      "fuzz_test_name": "fuzz_csp_service_handler_1"
+    },
+    "gracious_stingray": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:30:18.189223762Z",
+      "fuzz_test_name": "fuzz_csp_cmp"
+    },
+    "happy_caterpillar": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:26:22.033407412Z",
+      "fuzz_test_name": "fuzz_csp_route_work_1"
+    },
+    "helpful_pangolin": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:27:09.556304827Z",
+      "fuzz_test_name": "fuzz_csp_get_buf_free_1"
+    },
+    "hyperactive_guppy": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:29:11.338455716Z",
+      "fuzz_test_name": "fuzz_csp_ping"
+    },
+    "illustrious_scorpion": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:26:15.119361835Z",
+      "fuzz_test_name": "fuzz_csp_route_work_1"
+    },
+    "illustrious_spider": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:23:02.759923677Z",
+      "fuzz_test_name": "fuzz_csp_service_handler_1"
+    },
+    "infallible_anteater": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:32:14.576741038Z",
+      "fuzz_test_name": "fuzz_csp_reboot"
+    },
+    "infallible_firefly": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:28:32.129041529Z",
+      "fuzz_test_name": "fuzz_csp_get_memfree_1"
+    },
+    "interesting_elk": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:30:08.720643768Z",
+      "fuzz_test_name": "fuzz_csp_cmp"
+    },
+    "interesting_frog": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:29:01.115194473Z",
+      "fuzz_test_name": "fuzz_csp_ping"
+    },
+    "jittery_goose": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:29:23.857786448Z",
+      "fuzz_test_name": "fuzz_csp_ping"
+    },
+    "jittery_iguana": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:27:25.014507037Z",
+      "fuzz_test_name": "fuzz_csp_get_buf_free_1"
+    },
+    "jovial_ladybug": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:23:32.752416644Z",
+      "fuzz_test_name": "fuzz_csp_service_handler_1"
+    },
+    "jovial_otter": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:30:08.728128824Z",
+      "fuzz_test_name": "fuzz_csp_cmp"
+    },
+    "loving_cat": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:31:25.657410155Z",
+      "fuzz_test_name": "fuzz_csp_reboot"
+    },
+    "modest_viper": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:27:26.465525956Z",
+      "fuzz_test_name": "fuzz_csp_get_buf_free_1"
+    },
+    "objective_rhino": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:32:47.540184845Z",
+      "fuzz_test_name": "fuzz_csp_reboot"
+    },
+    "observing_pelican": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:27:53.660415722Z",
+      "fuzz_test_name": "fuzz_csp_get_memfree_1"
+    },
+    "odd_reindeer": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:34:29.047667251Z",
+      "fuzz_test_name": "fuzz_csp_transaction_w_opts"
+    },
+    "optimistic_groundhog": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:29:32.957990168Z",
+      "fuzz_test_name": "fuzz_csp_ping"
+    },
+    "peachy_owl": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:24:17.627152851Z",
+      "fuzz_test_name": "fuzz_csp_service_handler_1"
+    },
+    "pedantic_crab": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:28:01.010071131Z",
+      "fuzz_test_name": "fuzz_csp_get_memfree_1"
+    },
+    "photogenic_tortoise": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:27:09.564210877Z",
+      "fuzz_test_name": "fuzz_csp_get_buf_free_1"
+    },
+    "predictive_squid": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:28:24.260288881Z",
+      "fuzz_test_name": "fuzz_csp_get_memfree_1"
+    },
+    "quiet_caribou": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:29:45.358731123Z",
+      "fuzz_test_name": "fuzz_csp_ping"
+    },
+    "rebellious_hedgehog": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:28:08.388236122Z",
+      "fuzz_test_name": "fuzz_csp_get_memfree_1"
+    },
+    "rebellious_nightjar": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:32:47.485326135Z",
+      "fuzz_test_name": "fuzz_csp_reboot"
+    },
+    "relaxed_lemming": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:26:15.126587786Z",
+      "fuzz_test_name": "fuzz_csp_route_work_1"
+    },
+    "silly_ibex": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:32:34.773252721Z",
+      "fuzz_test_name": "fuzz_csp_reboot"
+    },
+    "spunky_orangutan": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:27:26.472238765Z",
+      "fuzz_test_name": "fuzz_csp_get_buf_free_1"
+    },
+    "suspicious_eagle": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:27:53.668109791Z",
+      "fuzz_test_name": "fuzz_csp_get_memfree_1"
+    },
+    "tender_camel": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:28:08.380411396Z",
+      "fuzz_test_name": "fuzz_csp_get_memfree_1"
+    },
+    "ticklish_peafowl": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:31:34.458423341Z",
+      "fuzz_test_name": "fuzz_csp_reboot"
+    },
+    "twirling_anteater": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:31:16.644560912Z",
+      "fuzz_test_name": "fuzz_csp_reboot"
+    },
+    "understanding_gecko": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:28:45.147008208Z",
+      "fuzz_test_name": "fuzz_csp_get_uptime_1"
+    },
+    "understanding_walrus": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:26:06.425854335Z",
+      "fuzz_test_name": "fuzz_csp_route_work_1"
+    },
+    "unruly_scallop": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:30:18.197659338Z",
+      "fuzz_test_name": "fuzz_csp_cmp"
+    },
+    "upbeat_mammoth": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:23:02.768355483Z",
+      "fuzz_test_name": "fuzz_csp_service_handler_1"
+    },
+    "vigilant_owl": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:29:43.902446386Z",
+      "fuzz_test_name": "fuzz_csp_ping"
+    },
+    "vigorous_scallop": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:28:01.069498562Z",
+      "fuzz_test_name": "fuzz_csp_get_memfree_1"
+    },
+    "wild_raven": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:31:25.655632647Z",
+      "fuzz_test_name": "fuzz_csp_reboot"
+    },
+    "wizardly_chicken": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:28:24.268452579Z",
+      "fuzz_test_name": "fuzz_csp_get_memfree_1"
+    },
+    "yodeling_armadillo": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:26:38.183939535Z",
+      "fuzz_test_name": "fuzz_csp_route_work_1"
+    },
+    "zen_anteater": {
+      "is_present": true,
+      "last_seen": "2025-06-10T11:28:45.154479825Z",
+      "fuzz_test_name": "fuzz_csp_get_uptime_1"
+    }
+  }
+}

@@ -1,0 +1,469 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "cifuzz",
+          "rules": [
+            {
+              "id": "shift_exponent",
+              "name": "Invalid Shift",
+              "shortDescription": {
+                "text": "Invalid Shift"
+              },
+              "fullDescription": {
+                "text": "A shift operation has been detected which is equal or greater than the left hand side of the operation, or the left hand side is negative."
+              },
+              "help": {
+                "text": "A shift operation has been detected which is equal or greater than the left hand side of the operation, or the left hand side is negative.\n\nMake sure the shift operation does not exceed the size of its target or causes an overflow"
+              },
+              "properties": {
+                "id": "",
+                "kind": "",
+                "name": "",
+                "problem": {
+                  "severity": "warning"
+                },
+                "problem.severity": "warning",
+                "security-severity": "2.0"
+              }
+            },
+            {
+              "id": "stack_buffer_overflow",
+              "name": "Stack Buffer Overflow",
+              "shortDescription": {
+                "text": "Stack Buffer Overflow"
+              },
+              "fullDescription": {
+                "text": "A stack buffer overflow occurs when the execution stack (function calls) exceeds a set threshold. A stack over flow vulnerability can be used by an attacker to overwrite memory locations close to the stack. For example, the stack return address, or exception handlers, which would allow the attacker to divert the program execution to his code."
+              },
+              "help": {
+                "text": "A stack buffer overflow occurs when the execution stack (function calls) exceeds a set threshold. A stack over flow vulnerability can be used by an attacker to overwrite memory locations close to the stack. For example, the stack return address, or exception handlers, which would allow the attacker to divert the program execution to his code.\n\n"
+              },
+              "properties": {
+                "id": "",
+                "kind": "",
+                "name": "",
+                "problem": {
+                  "severity": "error"
+                },
+                "problem.severity": "error",
+                "security-severity": "7.0"
+              }
+            },
+            {
+              "id": "segmentation_fault",
+              "name": "Segmentation Fault",
+              "shortDescription": {
+                "text": "Segmentation Fault"
+              },
+              "fullDescription": {
+                "text": "A Segmentation Fault is an error raised usually by hardware when software attempts to access protected memory. A program must first allocate memory it needs to write to or acquire access to read from a memory location. Programmers sometimes do not follow these requirements causing segmentation faults. Segmentation faults are a security concern as they could allow loading malicious code into the execution stack, allowing the attacker to execute arbitrary code and gain control of the target host as well as retrieving sensitive data."
+              },
+              "help": {
+                "text": "A Segmentation Fault is an error raised usually by hardware when software attempts to access protected memory. A program must first allocate memory it needs to write to or acquire access to read from a memory location. Programmers sometimes do not follow these requirements causing segmentation faults. Segmentation faults are a security concern as they could allow loading malicious code into the execution stack, allowing the attacker to execute arbitrary code and gain control of the target host as well as retrieving sensitive data.\n\nGood programming practices and reviews are necessary to address segmentation fault errors. In general the programmer should ensure they allocate the necessary memory to write to, do not write to arbitrary memory locations, and manage the ownership and release of memory pointers correctly."
+              },
+              "properties": {
+                "id": "",
+                "kind": "",
+                "name": "",
+                "problem": {
+                  "severity": "error"
+                },
+                "problem.severity": "error",
+                "security-severity": "7.0"
+              }
+            },
+            {
+              "id": "undefined_behavior",
+              "name": "Undefined Behavior",
+              "shortDescription": {
+                "text": "Undefined Behavior"
+              },
+              "fullDescription": {
+                "text": "An operation has been detected which is undefined by the C/C++ standard. The result will be compiler dependent and is often unpredictable."
+              },
+              "help": {
+                "text": "An operation has been detected which is undefined by the C/C++ standard. The result will be compiler dependent and is often unpredictable.\n\nAvoid all operations that cause undefined behavior as per the C/C++ standard."
+              },
+              "properties": {
+                "id": "",
+                "kind": "",
+                "name": "",
+                "problem": {
+                  "severity": "warning"
+                },
+                "problem.severity": "warning",
+                "security-severity": "2.0"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "shift_exponent",
+          "message": {
+            "text": "Invalid Shift \"bold_bat\" found in src/csp_id.c:233:25\n \nCrashing input (base64): CgoK\n \nStack trace:\n0: csp_id_is_broadcast   (src/csp_id.c:233:25)\n1: csp_send_direct   (src/csp_io.c:127:7)\n2: csp_send   (src/csp_io.c:305:2)\n3: csp_transaction_persistent   (src/csp_io.c:329:2)\n4: csp_transaction_w_opts   (src/csp_io.c:357:15)\n5: LLVMFuzzerTestOneInputNoReturn   (cifuzz-spark/fuzz_csp_transaction_w_opts.cpp:46:5)\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/csp_id.c"
+                },
+                "region": {
+                  "startLine": 233,
+                  "endLine": 233,
+                  "startColumn": 25,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "bold_bat"
+          }
+        },
+        {
+          "ruleId": "shift_exponent",
+          "message": {
+            "text": "Invalid Shift \"odd_reindeer\" found in src/csp_iflist.c:21:47\n \nCrashing input (base64): CgoK\n \nStack trace:\n0: csp_iflist_is_within_subnet   (src/csp_iflist.c:21:47)\n1: csp_iflist_get_by_subnet   (src/csp_iflist.c:52:7)\n2: csp_send_direct   (src/csp_io.c:106:18)\n3: csp_send   (src/csp_io.c:305:2)\n4: csp_transaction_persistent   (src/csp_io.c:329:2)\n5: csp_transaction_w_opts   (src/csp_io.c:357:15)\n6: LLVMFuzzerTestOneInputNoReturn   (cifuzz-spark/fuzz_csp_transaction_w_opts.cpp:46:5)\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/csp_iflist.c"
+                },
+                "region": {
+                  "startLine": 21,
+                  "endLine": 21,
+                  "startColumn": 47,
+                  "endColumn": 47
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "odd_reindeer"
+          }
+        },
+        {
+          "ruleId": "stack_buffer_overflow",
+          "message": {
+            "text": "Stack Buffer Overflow \"objective_rhino\" found in src/csp_buffer.c:115:11\n \nCrashing input (base64): CQkALXs=\n \nStack trace:\n0: csp_buffer_free   (src/csp_buffer.c:115:11)\n1: csp_send_direct   (src/csp_io.c:215:2)\n2: csp_send   (src/csp_io.c:305:2)\n3: LLVMFuzzerTestOneInputNoReturn   (cifuzz-spark/fuzz_csp_reboot.cpp:55:9)\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/csp_buffer.c"
+                },
+                "region": {
+                  "startLine": 115,
+                  "endLine": 115,
+                  "startColumn": 11,
+                  "endColumn": 11
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "objective_rhino"
+          }
+        },
+        {
+          "ruleId": "shift_exponent",
+          "message": {
+            "text": "Invalid Shift \"eloquent_nightjar\" found in src/csp_id.c:233:25\n \nCrashing input (base64): Lwo=\n \nStack trace:\n0: csp_id_is_broadcast   (src/csp_id.c:233:25)\n1: csp_send_direct   (src/csp_io.c:127:7)\n2: csp_send   (src/csp_io.c:305:2)\n3: csp_transaction_persistent   (src/csp_io.c:329:2)\n4: csp_transaction_w_opts   (src/csp_io.c:357:15)\n5: csp_reboot   (src/csp_services.c:93:2)\n6: LLVMFuzzerTestOneInputNoReturn   (cifuzz-spark/fuzz_csp_reboot.cpp:40:5)\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/csp_id.c"
+                },
+                "region": {
+                  "startLine": 233,
+                  "endLine": 233,
+                  "startColumn": 25,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "eloquent_nightjar"
+          }
+        },
+        {
+          "ruleId": "shift_exponent",
+          "message": {
+            "text": "Invalid Shift \"rebellious_nightjar\" found in src/csp_iflist.c:21:47\n \nCrashing input (base64): Lwo=\n \nStack trace:\n0: csp_iflist_is_within_subnet   (src/csp_iflist.c:21:47)\n1: csp_iflist_get_by_subnet   (src/csp_iflist.c:52:7)\n2: csp_send_direct   (src/csp_io.c:106:18)\n3: csp_send   (src/csp_io.c:305:2)\n4: csp_transaction_persistent   (src/csp_io.c:329:2)\n5: csp_transaction_w_opts   (src/csp_io.c:357:15)\n6: csp_reboot   (src/csp_services.c:93:2)\n7: LLVMFuzzerTestOneInputNoReturn   (cifuzz-spark/fuzz_csp_reboot.cpp:40:5)\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/csp_iflist.c"
+                },
+                "region": {
+                  "startLine": 21,
+                  "endLine": 21,
+                  "startColumn": 47,
+                  "endColumn": 47
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "rebellious_nightjar"
+          }
+        },
+        {
+          "ruleId": "segmentation_fault",
+          "message": {
+            "text": "Segmentation Fault \"unruly_scallop\" found in nptl/pthread_mutex_lock.c:80:23\n \nCrashing input (base64): hoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAIaGhoaGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhoaG2wCGAJMBAA==\n \nStack trace:\n0: __pthread_mutex_lock   (nptl/pthread_mutex_lock.c:80:23)\n1: pthread_queue_items   (src/arch/posix/pthread_queue.c:211:2)\n2: csp_queue_size   (src/arch/posix/csp_queue.c:34:9)\n3: csp_buffer_get_actual   (src/csp_buffer.c:46:12)\n4: csp_buffer_get   (src/csp_buffer.c:200:9)\n5: csp_transaction_persistent   (src/csp_io.c:320:26)\n6: csp_transaction_w_opts   (src/csp_io.c:357:15)\n7: csp_cmp   (src/csp_services.c:217:15)\n8: LLVMFuzzerTestOneInputNoReturn   (cifuzz-spark/fuzz_csp_cmp.cpp:67:18)\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "nptl/pthread_mutex_lock.c"
+                },
+                "region": {
+                  "startLine": 80,
+                  "endLine": 80,
+                  "startColumn": 23,
+                  "endColumn": 23
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "unruly_scallop"
+          }
+        },
+        {
+          "ruleId": "undefined_behavior",
+          "message": {
+            "text": "Undefined Behavior \"gracious_stingray\" found in src/arch/posix/pthread_queue.c:211:30\n \nCrashing input (base64): hoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAIaGhoaGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhoaG2wCGAJMBAA==\n \nStack trace:\n0: pthread_queue_items   (src/arch/posix/pthread_queue.c:211:30)\n1: csp_queue_size   (src/arch/posix/csp_queue.c:34:9)\n2: csp_buffer_get_actual   (src/csp_buffer.c:46:12)\n3: csp_buffer_get   (src/csp_buffer.c:200:9)\n4: csp_transaction_persistent   (src/csp_io.c:320:26)\n5: csp_transaction_w_opts   (src/csp_io.c:357:15)\n6: csp_cmp   (src/csp_services.c:217:15)\n7: LLVMFuzzerTestOneInputNoReturn   (cifuzz-spark/fuzz_csp_cmp.cpp:67:18)\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/arch/posix/pthread_queue.c"
+                },
+                "region": {
+                  "startLine": 211,
+                  "endLine": 211,
+                  "startColumn": 30,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "gracious_stingray"
+          }
+        },
+        {
+          "ruleId": "shift_exponent",
+          "message": {
+            "text": "Invalid Shift \"quiet_caribou\" found in src/csp_id.c:233:25\n \nCrashing input (base64): IwojCg==\n \nStack trace:\n0: csp_id_is_broadcast   (src/csp_id.c:233:25)\n1: csp_send_direct   (src/csp_io.c:127:7)\n2: csp_send   (src/csp_io.c:305:2)\n3: csp_ping   (src/csp_services.c:40:2)\n4: LLVMFuzzerTestOneInputNoReturn   (cifuzz-spark/fuzz_csp_ping.cpp:50:5)\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/csp_id.c"
+                },
+                "region": {
+                  "startLine": 233,
+                  "endLine": 233,
+                  "startColumn": 25,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "quiet_caribou"
+          }
+        },
+        {
+          "ruleId": "shift_exponent",
+          "message": {
+            "text": "Invalid Shift \"compassionate_cheetah\" found in src/csp_iflist.c:21:47\n \nCrashing input (base64): IwojCg==\n \nStack trace:\n0: csp_iflist_is_within_subnet   (src/csp_iflist.c:21:47)\n1: csp_iflist_get_by_subnet   (src/csp_iflist.c:52:7)\n2: csp_send_direct   (src/csp_io.c:106:18)\n3: csp_send   (src/csp_io.c:305:2)\n4: csp_ping   (src/csp_services.c:40:2)\n5: LLVMFuzzerTestOneInputNoReturn   (cifuzz-spark/fuzz_csp_ping.cpp:50:5)\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/csp_iflist.c"
+                },
+                "region": {
+                  "startLine": 21,
+                  "endLine": 21,
+                  "startColumn": 47,
+                  "endColumn": 47
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "compassionate_cheetah"
+          }
+        },
+        {
+          "ruleId": "segmentation_fault",
+          "message": {
+            "text": "Segmentation Fault \"zen_anteater\" found in nptl/pthread_mutex_lock.c:80:23\n \nCrashing input (base64): /////wAG/////6g=\n \nStack trace:\n0: __pthread_mutex_lock   (nptl/pthread_mutex_lock.c:80:23)\n1: pthread_queue_items   (src/arch/posix/pthread_queue.c:211:2)\n2: csp_queue_size   (src/arch/posix/csp_queue.c:34:9)\n3: csp_buffer_get_actual   (src/csp_buffer.c:46:12)\n4: csp_buffer_get   (src/csp_buffer.c:200:9)\n5: csp_transaction_persistent   (src/csp_io.c:320:26)\n6: csp_transaction_w_opts   (src/csp_io.c:357:15)\n7: csp_get_uptime   (src/csp_services.c:194:15)\n8: LLVMFuzzerTestOneInputNoReturn   (cifuzz-spark/fuzz_csp_get_uptime_1.cpp:51:15)\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "nptl/pthread_mutex_lock.c"
+                },
+                "region": {
+                  "startLine": 80,
+                  "endLine": 80,
+                  "startColumn": 23,
+                  "endColumn": 23
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "zen_anteater"
+          }
+        },
+        {
+          "ruleId": "undefined_behavior",
+          "message": {
+            "text": "Undefined Behavior \"understanding_gecko\" found in src/arch/posix/pthread_queue.c:211:30\n \nCrashing input (base64): /////wAG/////6g=\n \nStack trace:\n0: pthread_queue_items   (src/arch/posix/pthread_queue.c:211:30)\n1: csp_queue_size   (src/arch/posix/csp_queue.c:34:9)\n2: csp_buffer_get_actual   (src/csp_buffer.c:46:12)\n3: csp_buffer_get   (src/csp_buffer.c:200:9)\n4: csp_transaction_persistent   (src/csp_io.c:320:26)\n5: csp_transaction_w_opts   (src/csp_io.c:357:15)\n6: csp_get_uptime   (src/csp_services.c:194:15)\n7: LLVMFuzzerTestOneInputNoReturn   (cifuzz-spark/fuzz_csp_get_uptime_1.cpp:51:15)\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/arch/posix/pthread_queue.c"
+                },
+                "region": {
+                  "startLine": 211,
+                  "endLine": 211,
+                  "startColumn": 30,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "understanding_gecko"
+          }
+        },
+        {
+          "ruleId": "segmentation_fault",
+          "message": {
+            "text": "Segmentation Fault \"confident_dog\" found in nptl/pthread_mutex_lock.c:80:23\n \nCrashing input (base64): /woAAAAAAAAAAA==\n \nStack trace:\n0: __pthread_mutex_lock   (nptl/pthread_mutex_lock.c:80:23)\n1: pthread_queue_items   (src/arch/posix/pthread_queue.c:211:2)\n2: csp_queue_size   (src/arch/posix/csp_queue.c:34:9)\n3: csp_buffer_get_actual   (src/csp_buffer.c:46:12)\n4: csp_buffer_get   (src/csp_buffer.c:200:9)\n5: csp_transaction_persistent   (src/csp_io.c:320:26)\n6: csp_transaction_w_opts   (src/csp_io.c:357:15)\n7: csp_get_buf_free   (src/csp_services.c:172:15)\n8: LLVMFuzzerTestOneInputNoReturn   (cifuzz-spark/fuzz_csp_get_buf_free_1.cpp:69:19)\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "nptl/pthread_mutex_lock.c"
+                },
+                "region": {
+                  "startLine": 80,
+                  "endLine": 80,
+                  "startColumn": 23,
+                  "endColumn": 23
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "confident_dog"
+          }
+        },
+        {
+          "ruleId": "undefined_behavior",
+          "message": {
+            "text": "Undefined Behavior \"dazzling_tapir\" found in src/arch/posix/pthread_queue.c:211:30\n \nCrashing input (base64): /woAAAAAAAAAAA==\n \nStack trace:\n0: pthread_queue_items   (src/arch/posix/pthread_queue.c:211:30)\n1: csp_queue_size   (src/arch/posix/csp_queue.c:34:9)\n2: csp_buffer_get_actual   (src/csp_buffer.c:46:12)\n3: csp_buffer_get   (src/csp_buffer.c:200:9)\n4: csp_transaction_persistent   (src/csp_io.c:320:26)\n5: csp_transaction_w_opts   (src/csp_io.c:357:15)\n6: csp_get_buf_free   (src/csp_services.c:172:15)\n7: LLVMFuzzerTestOneInputNoReturn   (cifuzz-spark/fuzz_csp_get_buf_free_1.cpp:69:19)\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/arch/posix/pthread_queue.c"
+                },
+                "region": {
+                  "startLine": 211,
+                  "endLine": 211,
+                  "startColumn": 30,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "dazzling_tapir"
+          }
+        },
+        {
+          "ruleId": "stack_buffer_overflow",
+          "message": {
+            "text": "Stack Buffer Overflow \"rowdy_bison\" found in src/csp_buffer.c:115:11\n \nCrashing input (base64): /////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////////////+ioqKioqKioqKioqKioqKioqKi/////////////////////////////////////////////6KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKiov//////////////////////////////////////////////////////////////////////////////////Cg==\n \nStack trace:\n0: csp_buffer_free   (src/csp_buffer.c:115:11)\n1: csp_service_handler   (src/csp_service_handler.c:266:5)\n2: LLVMFuzzerTestOneInputNoReturn   (cifuzz-spark/fuzz_csp_service_handler.cpp:61:5)\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/csp_buffer.c"
+                },
+                "region": {
+                  "startLine": 115,
+                  "endLine": 115,
+                  "startColumn": 11,
+                  "endColumn": 11
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "rowdy_bison"
+          }
+        },
+        {
+          "ruleId": "stack_buffer_overflow",
+          "message": {
+            "text": "Stack Buffer Overflow \"untamed_ocelot\" found in src/csp_buffer.c:115:11\n \nCrashing input (base64): /////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///////////////+ioqKioqKioqKioqKioqKioqKi/////////////////////////////////////////////6KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKiov//////////////////////////////////////////////////////////////////////////////////Cg==\n \nStack trace:\n0: csp_buffer_free   (src/csp_buffer.c:115:11)\n1: csp_service_handler   (src/csp_service_handler.c:266:5)\n2: LLVMFuzzerTestOneInputNoReturn   (cifuzz-spark/fuzz_csp_service_handler.cpp:66:5)\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/csp_buffer.c"
+                },
+                "region": {
+                  "startLine": 115,
+                  "endLine": 115,
+                  "startColumn": 11,
+                  "endColumn": 11
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "untamed_ocelot"
+          }
+        }
+      ]
+    }
+  ]
+}
