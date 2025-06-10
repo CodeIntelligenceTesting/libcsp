@@ -1,0 +1,55 @@
+{
+  "name": "nerdy_peccary",
+  "type": "RUNTIME_ERROR",
+  "input_data": "AAD//////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/////wAAAAAAAAAAAAAA//////////+ioqKioqKioqKioqKioqKioqKi/////////////////////////////////////////////6KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKiosGioqKioqKioqKioqKioqKioqKiov//////////////////////////////////////////////CAAAAAAAAAD/////////////////////////Cg==",
+  "logs": [
+    "/home/philip/Code/Customer-Projects/EnduroSat/libcsp/src/csp_id.c:86:37: runtime error: index -4 out of bounds for type 'uint8_t[256]' (aka 'unsigned char[256]')",
+    "    #0 0x79a404af3d7f in csp_id1_setup_rx /home/philip/Code/Customer-Projects/EnduroSat/libcsp/src/csp_id.c:86:37",
+    "    #1 0x79a404af351a in csp_id_setup_rx /home/philip/Code/Customer-Projects/EnduroSat/libcsp/src/csp_id.c:203:3",
+    "    #2 0x610ed8e6bb0f in LLVMFuzzerTestOneInputNoReturn(unsigned char const*, unsigned long) /home/philip/Code/Customer-Projects/EnduroSat/libcsp/cifuzz-spark/fuzz_csp_service_handler.cpp:56:5",
+    "    #3 0x610ed8e6b82c in LLVMFuzzerTestOneInput /opt/code-intelligence/cifuzz/share/cmake/../../include/cifuzz/cifuzz.h:36:3",
+    "    #4 0x610ed8d76d14 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/home/philip/Code/Customer-Projects/EnduroSat/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_service_handler+0x54d14) (BuildId: 78da23ade2d4ffaccae06b0a381ffd261d48c759)",
+    "    #5 0x610ed8d76409 in fuzzer::Fuzzer::RunOne(unsigned char const*, unsigned long, bool, fuzzer::InputInfo*, bool, bool*) (/home/philip/Code/Customer-Projects/EnduroSat/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_service_handler+0x54409) (BuildId: 78da23ade2d4ffaccae06b0a381ffd261d48c759)",
+    "    #6 0x610ed8d78026 in fuzzer::Fuzzer::ReadAndExecuteSeedCorpora(std::vector\u003cfuzzer::SizedFile, std::allocator\u003cfuzzer::SizedFile\u003e\u003e\u0026) (/home/philip/Code/Customer-Projects/EnduroSat/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_service_handler+0x56026) (BuildId: 78da23ade2d4ffaccae06b0a381ffd261d48c759)",
+    "    #7 0x610ed8d78537 in fuzzer::Fuzzer::Loop(std::vector\u003cfuzzer::SizedFile, std::allocator\u003cfuzzer::SizedFile\u003e\u003e\u0026) (/home/philip/Code/Customer-Projects/EnduroSat/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_service_handler+0x56537) (BuildId: 78da23ade2d4ffaccae06b0a381ffd261d48c759)",
+    "    #8 0x610ed8d65a2f in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/home/philip/Code/Customer-Projects/EnduroSat/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_service_handler+0x43a2f) (BuildId: 78da23ade2d4ffaccae06b0a381ffd261d48c759)",
+    "    #9 0x610ed8d900b6 in main (/home/philip/Code/Customer-Projects/EnduroSat/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_service_handler+0x6e0b6) (BuildId: 78da23ade2d4ffaccae06b0a381ffd261d48c759)",
+    "    #10 0x79a40482a1c9 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16",
+    "    #11 0x79a40482a28a in __libc_start_main csu/../csu/libc-start.c:360:3",
+    "    #12 0x610ed8d5aa14 in _start (/home/philip/Code/Customer-Projects/EnduroSat/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_service_handler+0x38a14) (BuildId: 78da23ade2d4ffaccae06b0a381ffd261d48c759)",
+    "",
+    "SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior /home/philip/Code/Customer-Projects/EnduroSat/libcsp/src/csp_id.c:86:37 MS: 0 ; base unit: 0000000000000000000000000000000000000000",
+    "artifact_prefix='/tmp/libfuzzer-out-1383738228/'; Test unit written to .cifuzz-findings/nerdy_peccary/crashing-input",
+    "================================================================="
+  ],
+  "details": "undefined behavior: index -4 out of bounds for type 'uint8_t[256]' (aka 'unsigned char[256]')",
+  "more_details": {
+    "id": "out_of_bounds"
+  },
+  "created_at": "2025-06-06T18:12:27.047746818+02:00",
+  "input_file": ".cifuzz-findings/nerdy_peccary/crashing-input",
+  "stack_trace": [
+    {
+      "SourceFile": "src/csp_id.c",
+      "Line": 86,
+      "Column": 37,
+      "FrameNumber": 0,
+      "Function": "csp_id1_setup_rx"
+    },
+    {
+      "SourceFile": "src/csp_id.c",
+      "Line": 203,
+      "Column": 3,
+      "FrameNumber": 1,
+      "Function": "csp_id_setup_rx"
+    },
+    {
+      "SourceFile": "cifuzz-spark/fuzz_csp_service_handler.cpp",
+      "Line": 56,
+      "Column": 5,
+      "FrameNumber": 2,
+      "Function": "LLVMFuzzerTestOneInputNoReturn"
+    }
+  ],
+  "fuzz_test": "fuzz_csp_service_handler"
+}
