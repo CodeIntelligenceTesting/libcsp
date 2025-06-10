@@ -5,11 +5,14 @@
 #include <csp/csp_debug.h>
 #include <csp/csp_interface.h>
 #include <pthread.h>
+#include <csp/csp_id.h>
 
 // Assumed buffer size constant, verify from project if it's defined
 #ifndef CSP_BUFFER_SIZE
-#define CSP_BUFFER_SIZE 256
+#define CSP_BUFFER_SIZE 1024
 #endif
+
+extern csp_conf_t csp_conf;
 
 /*
  * Basic server setup, listens and processes packets in a separate thread.
@@ -41,6 +44,7 @@ FUZZ_TEST_SETUP() {
 
 FUZZ_TEST(const uint8_t *data, size_t size) {
     FuzzedDataProvider fdp(data, size);
+    csp_conf.version = fdp.ConsumeIntegralInRange<uint8_t>(1, 2); // CSP version 1 or 2
 
     // Ensure we have enough data to form a valid packet before proceeding
     if (fdp.remaining_bytes() < sizeof(csp_packet_t)) {
@@ -49,13 +53,15 @@ FUZZ_TEST(const uint8_t *data, size_t size) {
 
     // Construct the packet with fuzzed data
     csp_packet_t packet;
-    packet.id.flags = fdp.ConsumeIntegral<uint8_t>();
+    //csp_id_setup_rx(&packet);
+    //packet.id.flags = fdp.ConsumeIntegral<uint8_t>();
     auto packet_data = fdp.ConsumeBytes<uint8_t>(CSP_BUFFER_SIZE);
     packet.length = packet_data.size();
     if (packet_data.size() == 0 || packet_data.size() > CSP_BUFFER_SIZE) {
         return;
     }
     std::memcpy(packet.data, packet_data.data(), packet_data.size());
+    //csp_id_strip(&packet);
 
     // Pass the packet to the service handler
     csp_service_handler(&packet);
