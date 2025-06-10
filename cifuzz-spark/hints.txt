@@ -14,4 +14,4 @@
 #endif"
 - Validate inputs before passing them to the functions under test to avoid unnecessary crashes.
 - You shall define csp_conf_t like this: "extern csp_conf_t csp_conf;" and you shall add the line "csp_conf.version = fdp.ConsumeIntegralInRange<uint8_t>(1, 2); // CSP version 1 or 2
-" after you created the FuzzedDataProvider.
+" after you created the FuzzedDataProvider. After that you shall initialize csp exactly like this: "csp_init();"
