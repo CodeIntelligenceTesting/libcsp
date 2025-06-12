@@ -1,0 +1,62 @@
+{
+  "name": "thirsty_toad",
+  "type": "CRASH",
+  "input_data": "AAAACgAABH0AAAo=",
+  "logs": [
+    "==168399==ERROR: LeakSanitizer: detected memory leaks",
+    "",
+    "Direct leak of 152 byte(s) in 1 object(s) allocated from:",
+    "    #0 0x612e1284d9dd in calloc (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_usart_open_and_add_kiss_interface+0x1149dd) (BuildId: f22d8b71d9bf87201d0335248c3dd582304344ff)",
+    "    #1 0x7b3c7cf5b848 in csp_usart_open_and_add_kiss_interface /workspaces/libcsp/src/drivers/usart/usart_kiss.c:39:25",
+    "    #2 0x612e1289217d in add_interface(DeviceType, char const*) /workspaces/libcsp/cifuzz-spark/fuzz_csp_usart_open_and_add_kiss_interface.cpp:38:21",
+    "    #3 0x612e12891751 in LLVMFuzzerTestOneInputNoReturn(unsigned char const*, unsigned long) /workspaces/libcsp/cifuzz-spark/fuzz_csp_usart_open_and_add_kiss_interface.cpp:95:29",
+    "    #4 0x612e12891318 in LLVMFuzzerTestOneInput /opt/code-intelligence/cifuzz/share/cmake/../../include/cifuzz/cifuzz.h:36:3",
+    "    #5 0x612e1279365a in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_usart_open_and_add_kiss_interface+0x5a65a) (BuildId: f22d8b71d9bf87201d0335248c3dd582304344ff)",
+    "    #6 0x612e12792c69 in fuzzer::Fuzzer::RunOne(unsigned char const*, unsigned long, bool, fuzzer::InputInfo*, bool, bool*) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_usart_open_and_add_kiss_interface+0x59c69) (BuildId: f22d8b71d9bf87201d0335248c3dd582304344ff)",
+    "    #7 0x612e12794665 in fuzzer::Fuzzer::MutateAndTestOne() (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_usart_open_and_add_kiss_interface+0x5b665) (BuildId: f22d8b71d9bf87201d0335248c3dd582304344ff)",
+    "    #8 0x612e12795155 in fuzzer::Fuzzer::Loop(std::vector\u003cfuzzer::SizedFile, std::allocator\u003cfuzzer::SizedFile\u003e\u003e\u0026) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_usart_open_and_add_kiss_interface+0x5c155) (BuildId: f22d8b71d9bf87201d0335248c3dd582304344ff)",
+    "    #9 0x612e12781605 in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_usart_open_and_add_kiss_interface+0x48605) (BuildId: f22d8b71d9bf87201d0335248c3dd582304344ff)",
+    "    #10 0x612e127ada86 in main (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_usart_open_and_add_kiss_interface+0x74a86) (BuildId: f22d8b71d9bf87201d0335248c3dd582304344ff)",
+    "    #11 0x7b3c7ca2a1c9 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16",
+    "    #12 0x7b3c7ca2a28a in __libc_start_main csu/../csu/libc-start.c:360:3",
+    "    #13 0x612e12775a84 in _start (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_usart_open_and_add_kiss_interface+0x3ca84) (BuildId: f22d8b71d9bf87201d0335248c3dd582304344ff)",
+    "",
+    "SUMMARY: AddressSanitizer: 152 byte(s) leaked in 1 allocation(s).INFO: to ignore leaks on libFuzzer side use -detect_leaks=0.",
+    "",
+    "MS: 4 ShuffleBytes-ChangeBit-ShuffleBytes-ChangeBinInt-; base unit: 1e946f5e929bb7e861d5ade5b75a777a320be2f8",
+    "0x0,0x0,0x0,0xa,0x0,0x0,0x4,0x7d,0x0,0x0,0xa,",
+    "\\000\\000\\000\\012\\000\\000\\004}\\000\\000\\012",
+    "artifact_prefix='/tmp/libfuzzer-out-1897792674/'; Test unit written to .cifuzz-findings/thirsty_toad/crashing-input",
+    "Base64: AAAACgAABH0AAAo="
+  ],
+  "details": "detected memory leaks",
+  "more_details": {
+    "id": "memory_leak"
+  },
+  "created_at": "2025-06-12T18:33:38.202652546Z",
+  "input_file": ".cifuzz-findings/thirsty_toad/crashing-input",
+  "stack_trace": [
+    {
+      "SourceFile": "src/drivers/usart/usart_kiss.c",
+      "Line": 39,
+      "Column": 25,
+      "FrameNumber": 1,
+      "Function": "csp_usart_open_and_add_kiss_interface"
+    },
+    {
+      "SourceFile": "cifuzz-spark/fuzz_csp_usart_open_and_add_kiss_interface.cpp",
+      "Line": 38,
+      "Column": 21,
+      "FrameNumber": 2,
+      "Function": "add_interface"
+    },
+    {
+      "SourceFile": "cifuzz-spark/fuzz_csp_usart_open_and_add_kiss_interface.cpp",
+      "Line": 95,
+      "Column": 29,
+      "FrameNumber": 3,
+      "Function": "LLVMFuzzerTestOneInputNoReturn"
+    }
+  ],
+  "fuzz_test": "fuzz_csp_usart_open_and_add_kiss_interface"
+}

@@ -23,27 +23,37 @@
     }
 - Replace MY_SERVER_PORT with your actual server port number.
 - Start the server in a separate thread in the FUZZ_TEST_SETUP function, and ensure it runs throughout the fuzz test.
-- For the client, establish a CSP connection to the server using csp_connect, and let the fuzzer decide how many packets to send per connection (e.g., using fdp.ConsumeIntegralInRange).
-    csp_conn_t *conn = csp_connect(CSP_PRIO_NORM, server_address, MY_SERVER_PORT, 1000, CSP_O_NONE);
-    if (conn == NULL) {
-        // Connection failed, handle error or return
+- For the client logic, use this pattern to connect and send fuzzed packets, letting the fuzzer decide when to close the connection:
+    csp_conn_t *conn = nullptr;
+    switch (fdp.ConsumeIntegralInRange<int>(0, 1)) {
+        case 0:
+            conn = csp_connect(CSP_PRIO_NORM, 0, MY_SERVER_PORT, 1000, CSP_O_NONE);
+            break;
+        case 1:
+            conn = csp_connect(CSP_PRIO_NORM, 1, MY_SERVER_PORT, 1000, CSP_O_NONE);
+            break;
+    }
+    if (conn == nullptr) {
         return;
     }
-    int num_packets = fdp.ConsumeIntegralInRange<int>(1, 10); // Example: 1-10 packets
-    for (int i = 0; i < num_packets; ++i) {
+    bool should_close = fdp.ConsumeBool();
+    while (fdp.remaining_bytes() > 0) {
         auto packet_data = fdp.ConsumeBytes<uint8_t>(CSP_BUFFER_SIZE);
-        if (packet_data.size() == 0 || packet_data.size() > CSP_BUFFER_SIZE) {
+        if (packet_data.empty() || packet_data.size() > CSP_BUFFER_SIZE) {
             continue;
         }
         csp_packet_t *packet = csp_buffer_get(0);
-        if (packet == NULL) {
+        if (packet == nullptr) {
             break;
         }
         std::memcpy(packet->data, packet_data.data(), packet_data.size());
         packet->length = packet_data.size();
         csp_send(conn, packet);
     }
-    csp_close(conn);
+    if (should_close) {
+        csp_close(conn);
+    }
+- This approach lets the fuzzer control both the number of packets sent and whether the connection is closed.
 - If you create an object of type csp_packet_t, you shall create it like this:
      csp_packet_t packet;
      auto packet_data = fdp.ConsumeBytes<uint8_t>(CSP_BUFFER_SIZE);
