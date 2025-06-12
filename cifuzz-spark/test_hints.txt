@@ -1,6 +1,5 @@
 - It's a server/client app.
-- For the server, use the setup and logic from `examples/csp_server_client.c` and related files: create a CSP socket, bind it, listen, accept connections, and handle incoming packets using CSP APIs (not just a dummy infinite loop).
-- To implement the server, use the following pattern based on examples/csp_server_client.c:
+- For the server, use the setup and logic from examples/csp_server_client.c and related files:
     csp_socket_t sock = {0};
     csp_bind(&sock, CSP_ANY);
     csp_listen(&sock, 10);
@@ -24,8 +23,28 @@
     }
 - Replace MY_SERVER_PORT with your actual server port number.
 - Start the server in a separate thread in the FUZZ_TEST_SETUP function, and ensure it runs throughout the fuzz test.
-- For the client, establish a CSP connection to the server, create a `csp_packet_t` as shown below, and send it using CSP APIs (e.g., `csp_connect`, `csp_send`, `csp_close`).
-- If you create an object of type `csp_packet_t`, use this pattern:
+- For the client, establish a CSP connection to the server using csp_connect, and let the fuzzer decide how many packets to send per connection (e.g., using fdp.ConsumeIntegralInRange).
+    csp_conn_t *conn = csp_connect(CSP_PRIO_NORM, server_address, MY_SERVER_PORT, 1000, CSP_O_NONE);
+    if (conn == NULL) {
+        // Connection failed, handle error or return
+        return;
+    }
+    int num_packets = fdp.ConsumeIntegralInRange<int>(1, 10); // Example: 1-10 packets
+    for (int i = 0; i < num_packets; ++i) {
+        auto packet_data = fdp.ConsumeBytes<uint8_t>(CSP_BUFFER_SIZE);
+        if (packet_data.size() == 0 || packet_data.size() > CSP_BUFFER_SIZE) {
+            continue;
+        }
+        csp_packet_t *packet = csp_buffer_get(0);
+        if (packet == NULL) {
+            break;
+        }
+        std::memcpy(packet->data, packet_data.data(), packet_data.size());
+        packet->length = packet_data.size();
+        csp_send(conn, packet);
+    }
+    csp_close(conn);
+- If you create an object of type csp_packet_t, you shall create it like this:
      csp_packet_t packet;
      auto packet_data = fdp.ConsumeBytes<uint8_t>(CSP_BUFFER_SIZE);
      packet.length = packet_data.size();
@@ -38,6 +57,6 @@
      #define CSP_BUFFER_SIZE 1024
      #endif
 - Validate all inputs before passing them to CSP functions to avoid unnecessary crashes.
-- Call `csp_init();` at the end of the FUZZ_TEST_SETUP function.
+- Call csp_init(); at the end of the FUZZ_TEST_SETUP function.
 - Use synchronization primitives (e.g., mutex, condition variable) if needed to coordinate server and client startup.
 - Clean up resources (close sockets, free buffers) as appropriate in your test logic.
