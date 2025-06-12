@@ -1,6 +1,6 @@
 - It's a server/client app
-- First, create a dummy server (like in the example `server` function) that runs on a separate thread. The server should run constantly (while (1)).
-- Then, for the client part, where we send fuzzed data to this server
+- Create a dummy server (like in the example `server` function) that runs on a separate thread. The server should run constantly (while (1)) and be started in the FUZZ_TEST_SETUP function.
+- For the client part, where we send fuzzed data to this server
 - If you create an object of type csp_packet_t, you shall create it like this: "csp_packet_t packet;
     packet.id.flags = fdp.ConsumeIntegral<uint8_t>();
     auto packet_data = fdp.ConsumeBytes<uint8_t>(CSP_BUFFER_SIZE);
@@ -13,5 +13,4 @@
 #define CSP_BUFFER_SIZE 1024
 #endif"
 - Validate inputs before passing them to the functions under test to avoid unnecessary crashes.
-- You shall define csp_conf_t like this: "extern csp_conf_t csp_conf;" and you shall add the line "csp_conf.version = fdp.ConsumeIntegralInRange<uint8_t>(1, 2); // CSP version 1 or 2
-" after you created the FuzzedDataProvider. After that you shall initialize csp exactly like this: "csp_init();"
+- Call the "csp_init();" function at the end of the "FUZZ_TEST_SETUP" function.

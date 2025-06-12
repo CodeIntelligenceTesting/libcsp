@@ -35,13 +35,15 @@ void server() {
 FUZZ_TEST_SETUP() {
     static std::thread server_thread(server);
     server_thread.detach();  // Detach server thread to run independently
+
+    //csp_conf.version = fdp.ConsumeIntegralInRange<uint8_t>(1, 2); // CSP version 1 or 2
+    csp_init();
 }
 
 // The fuzzing test function
 FUZZ_TEST(const uint8_t *data, size_t size) {
     FuzzedDataProvider fdp(data, size);
-    csp_conf.version = fdp.ConsumeIntegralInRange<uint8_t>(1, 2); // CSP version 1 or 2
-    csp_init();
+    
     // Fuzzing variables
     uint16_t node = fdp.ConsumeIntegral<uint16_t>();
     uint32_t timeout = fdp.ConsumeIntegral<uint32_t>();
