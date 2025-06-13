@@ -1,4 +1,7 @@
 - It's a server/client app
 - First, create a dummy server (like in the example `server` function) that runs on a separate thread
 - Then, for the client part, where we send fuzzed data to this server
-- The server should run constantly (while (1))
+- At last, create
+- The server and the router should run constantly (while (1))
+- Use `csp_pthread_create` to create the thread
+- Only call `csp_init` in the fuzz test setup
