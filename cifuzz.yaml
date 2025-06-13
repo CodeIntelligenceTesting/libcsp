@@ -64,4 +64,4 @@ max-runtime: 0
 build-file: cifuzz-spark/CMakeLists.txt
 
 llm-hint-files:
- - cifuzz-spark/hints.txt
+ - cifuzz-spark/test_hints.txt

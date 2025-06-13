@@ -2,7 +2,6 @@
 - Create a dummy server (like in the example `server` function) that runs on a separate thread. The server should run constantly (while (1)) and be started in the FUZZ_TEST_SETUP function.
 - For the client part, where we send fuzzed data to this server
 - If you create an object of type csp_packet_t, you shall create it like this: "csp_packet_t packet;
-    packet.id.flags = fdp.ConsumeIntegral<uint8_t>();
     auto packet_data = fdp.ConsumeBytes<uint8_t>(CSP_BUFFER_SIZE);
     packet.length = packet_data.size();
     if (packet_data.size() == 0 || packet_data.size() > CSP_BUFFER_SIZE) {
