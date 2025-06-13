@@ -70,11 +70,7 @@
             if (!conn) continue;
             csp_packet_t* packet;
             while ((packet = csp_read(conn, 50)) != nullptr) {
-                if (csp_conn_dport(conn) == MY_SERVER_PORT) {
-                    csp_buffer_free(packet);
-                } else {
-                    csp_service_handler(packet);
-                }
+                csp_service_handler(packet);
             }
             csp_close(conn);
         }
