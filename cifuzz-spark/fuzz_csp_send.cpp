@@ -7,10 +7,19 @@
 #include <csp/interfaces/csp_if_lo.h>
 #include <pthread.h>
 
+#include <condition_variable>
+#include <iostream>
+#include <mutex>
+
 #define MY_SERVER_PORT 10
 #ifndef CSP_BUFFER_SIZE
 #define CSP_BUFFER_SIZE 1024
 #endif
+
+// Synchronization primitives
+std::mutex mtx;
+std::condition_variable cv;
+bool server_done = false;
 
 // Function to create a thread using the CSP model
 static int csp_pthread_create(void *(*routine)(void *)) {
@@ -35,15 +44,26 @@ void *server_work(void *arg) {
     csp_bind(&socket, CSP_ANY);
     csp_listen(&socket, 10);
     while (1) {
+        fprintf(stderr, "Server waiting to accept connections\n");
         csp_conn_t *conn = csp_accept(&socket, 50000);
         if (!conn) continue;
 
+        fprintf(stderr, "Server waiting to read packages\n");
         csp_packet_t *packet;
         while ((packet = csp_read(conn, 50)) != nullptr) {
             csp_service_handler(packet);
         }
+        fprintf(stderr, "Server done reading packages and closing connection.\n");
         csp_close(conn);
+
+        // Signal completion
+        fprintf(stderr, "Locking in server\n");
+        std::lock_guard<std::mutex> lock(mtx);
+        server_done = true;
+        fprintf(stderr, "Notifying client\n");
+        cv.notify_one();
     }
+    
     return nullptr;
 }
 
@@ -64,11 +84,14 @@ FUZZ_TEST_SETUP() {
 // Main fuzz test function
 FUZZ_TEST(const uint8_t *data, size_t size) {
     FuzzedDataProvider fdp(data, size);
-
-    csp_conn_t *conn = nullptr;
+    
     // CSP ports are typically in the range 0-6 7-> to trigger the default branch
     uint8_t dport = fdp.ConsumeIntegralInRange<uint8_t>(0, 7); 
-    conn = csp_connect(CSP_PRIO_NORM, 0, dport, 1000, CSP_O_NONE);
+    if (fdp.remaining_bytes() == 0) {
+        return; // No data to send
+    }
+
+    csp_conn_t *conn = csp_connect(CSP_PRIO_NORM, 0, dport, 1000, CSP_O_NONE);
 
     if (conn == nullptr) {
         return;
@@ -90,6 +113,15 @@ FUZZ_TEST(const uint8_t *data, size_t size) {
         packet->id.dport = dport;
         csp_send(conn, packet);
     }
-    
+
     csp_close(conn);
+    // locking
+    fprintf(stderr, "Locking in client\n");
+    std::unique_lock<std::mutex> lock(mtx);
+    
+    fprintf(stderr, "Waiting on conditional variable in client\n");
+    // waiting
+    cv.wait(lock, [] { return server_done; });
+    server_done = false; // Reset for next test
+    lock.unlock(); 
 }

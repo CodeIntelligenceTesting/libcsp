@@ -1,0 +1,101 @@
+{
+  "name": "wild_mink",
+  "type": "CRASH",
+  "input_data": "//////////8Sfv///////////////////////xQQEBAQ/////yv//////////////1tb7///////7AAAAAAAAAD+/////////////////////////////////////////4P///96////////////////////////EBAQEBD/////K///////////////W1vv///////s//////ib//////////////////////////ib////////////////////////HBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBz/ERgcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwc////////////////yv////////////////+D////ev///////////////////////xAQEBAQvCb///////8UEBAQ/////yv//////////////1tb7///////7P//////////7P//////m///HBwcHBwcHBwc/xEcHBwcHBwcHBwcHBwcHP///////////////xAQEBAQ/////yv//////////////1tb7///////7P9/////m////////////////////////xwcHBwAAAAFHBwcHBwcHBwcHBwcHP////////////////////////////////////////////////////////////////////////////////////////////////////////8cHBwcAAAABRwcHBwcHBwcHBwcHBz//////////////////////////////////////////////////////////////////////////////////////////////////P///////////////////////////////////////////////////////////////xwcHBwcHBwcHBwcHBwcHBwcHP8RHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBz///////////////////////////+DAFdXO/8IAAAAAAAAAP////////////////////////////////////+D////////////////AAD/////////////////////////////////////g/////////////////////////////8QEBAQEP////8r//////////////9bW+///////+z//////5v///////////////////////8cHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHP8RHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBz///////////////////////////+D////////////////////////////////////CSb/////7////wb//1f/////////////EBAQEBD/////K///////////////W1vv///////s//////+b///////////////////f////HBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBz/ERwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwc////////////////////////W1vv////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7P9/////m////////////////////////xwcHBwAAAAFHBwcHBwcHBwcHBwcHP///////////////////////////////////////////////////////////+z/f////5v///////8r//////////////9bW+///////+z/////+Jv///////////////////////8cHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwlHBwcHBwcHP8R//////////////////////////////////////////////////////////////////////////////////////8YHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBz///////////////////////////////////////////////////////////////////////////////////////8cHBwcAAAABRwcHBwcHBwcHBwcHBz///8DAP///////////////////////////////////////////////////////////////////////////////////////////////////////////////xwcHBwAAAAFHBwcHBwcHBwcHBwcHP//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////HBwcHBwcHBwcHBwcHBwcHBwc/xEcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHP///////////////////////////4P///////////////////////8AAAAAAP//////////////////////////////////////////////////////////////////////////////////HBwcHAAAAAAAABz///////////8AAAAAAAAAAAAAAAAAAHsAAAA=",
+  "logs": [
+    "==69747==ERROR: AddressSanitizer: SEGV on unknown address 0x00001c1c1c1c (pc 0x78046eba134a bp 0x78046a9ff530 sp 0x78046a9fecd8 T2)",
+    "==69747==The signal is caused by a WRITE memory access.",
+    "Locking in client",
+    "Waiting on conditional variable in client",
+    "    #0 0x78046eba134a in __memcpy_avx512_unaligned_erms string/../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S:344",
+    "    #1 0x57707c1fd42f in memcpy (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_send+0x11142f) (BuildId: cf6c6f2a0b3ab9658a8d43bdea68b9af7b4ef724)",
+    "    #2 0x78046ef12676 in do_cmp_poke /workspaces/libcsp/src/csp_service_handler.c:151:2",
+    "    #3 0x78046ef0d866 in csp_cmp_handler /workspaces/libcsp/src/csp_service_handler.c:247:10",
+    "    #4 0x78046ef0c012 in csp_service_handler /workspaces/libcsp/src/csp_service_handler.c:278:8",
+    "    #5 0x57707c243340 in server_work(void*) /workspaces/libcsp/cifuzz-spark/fuzz_csp_send.cpp:54:13",
+    "    #6 0x57707c1fc1da in asan_thread_start(void*) asan_interceptors.cpp.o",
+    "    #7 0x78046ea9caa3 in start_thread nptl/pthread_create.c:447:8",
+    "    #8 0x78046eb29c3b in clone3 misc/../sysdeps/unix/sysv/linux/x86_64/clone3.S:78",
+    "",
+    "==69747==Register values:",
+    "rax = 0x000000001c1c1c1c  rbx = 0x0000000000000000  rcx = 0x0000000083830386  rdx = 0x000000000000001c  ",
+    "rdi = 0x000000001c1c1c1c  rsi = 0x000078046effa5f7  rbp = 0x000078046a9ff530  rsp = 0x000078046a9fecd8  ",
+    " r8 = 0x0000000003838383   r9 = 0x000000001c1c1c37  r10 = 0x0000000003838386  r11 = 0x0000000083830380  ",
+    "r12 = 0x0000000083830380  r13 = 0xffffffffffffffdb  r14 = 0x000078046e3ad000  r15 = 0x000057707c243068  ",
+    "AddressSanitizer can not provide additional info.",
+    "SUMMARY: AddressSanitizer: SEGV string/../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S:344 in __memcpy_avx512_unaligned_ermsMS: 5 ChangeBit-ChangeBinInt-InsertRepeatedBytes-CrossOver-PersAutoDict- DE: \"\\003\\000\"-; base unit: 845749565262dc4b4bc6618ab00da30f582dd3e1",
+    "artifact_prefix='/tmp/libfuzzer-out-4137802520/'; Test unit written to .cifuzz-findings/wild_mink/crashing-input",
+    "Thread T2 created by T0 here:",
+    "    #0 0x57707c1e3d95 in pthread_create (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_send+0xf7d95) (BuildId: cf6c6f2a0b3ab9658a8d43bdea68b9af7b4ef724)",
+    "    #1 0x57707c243c51 in csp_pthread_create(void* (*)(void*)) /workspaces/libcsp/cifuzz-spark/fuzz_csp_send.cpp:33:11",
+    "    #2 0x57707c2439c0 in LLVMFuzzerInitializeNoReturn() /workspaces/libcsp/cifuzz-spark/fuzz_csp_send.cpp:81:5",
+    "    #3 0x57707c243950 in LLVMFuzzerInitialize /workspaces/libcsp/cifuzz-spark/fuzz_csp_send.cpp:78:1",
+    "    #4 0x57707c13027b in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_send+0x4427b) (BuildId: cf6c6f2a0b3ab9658a8d43bdea68b9af7b4ef724)",
+    "    #5 0x57707c15eb16 in main (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_send+0x72b16) (BuildId: cf6c6f2a0b3ab9658a8d43bdea68b9af7b4ef724)",
+    "    #6 0x78046ea2a1c9 in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16",
+    "    #7 0x78046ea2a28a in __libc_start_main csu/../csu/libc-start.c:360:3",
+    "    #8 0x57707c126b14 in _start (/workspaces/libcsp/.cifuzz/build/libfuzzer-clang/address+undefined/cifuzz-spark/fuzz_csp_send+0x3ab14) (BuildId: cf6c6f2a0b3ab9658a8d43bdea68b9af7b4ef724)",
+    "",
+    "==69747==ABORTING",
+    "MS: 5 ChangeBit-ChangeBinInt-InsertRepeatedBytes-CrossOver-PersAutoDict- DE: \"\\003\\000\"-; base unit: 845749565262dc4b4bc6618ab00da30f582dd3e1",
+    "artifact_prefix='/tmp/libfuzzer-out-4137802520/'; Test unit written to .cifuzz-findings/wild_mink/crashing-input"
+  ],
+  "details": "SEGV on unknown address 0x00001c1c1c1c (pc 0x78046eba134a bp 0x78046a9ff530 sp 0x78046a9fecd8 T2)",
+  "more_details": {
+    "id": "segmentation_fault"
+  },
+  "created_at": "2025-06-16T14:15:34.954902169Z",
+  "input_file": ".cifuzz-findings/wild_mink/crashing-input",
+  "stack_trace": [
+    {
+      "SourceFile": "string/../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S",
+      "Line": 344,
+      "Column": 0,
+      "FrameNumber": 0,
+      "Function": "__memcpy_avx512_unaligned_erms"
+    },
+    {
+      "SourceFile": "src/csp_service_handler.c",
+      "Line": 151,
+      "Column": 2,
+      "FrameNumber": 2,
+      "Function": "do_cmp_poke"
+    },
+    {
+      "SourceFile": "src/csp_service_handler.c",
+      "Line": 247,
+      "Column": 10,
+      "FrameNumber": 3,
+      "Function": "csp_cmp_handler"
+    },
+    {
+      "SourceFile": "src/csp_service_handler.c",
+      "Line": 278,
+      "Column": 8,
+      "FrameNumber": 4,
+      "Function": "csp_service_handler"
+    },
+    {
+      "SourceFile": "cifuzz-spark/fuzz_csp_send.cpp",
+      "Line": 54,
+      "Column": 13,
+      "FrameNumber": 5,
+      "Function": "server_work"
+    },
+    {
+      "SourceFile": "nptl/pthread_create.c",
+      "Line": 447,
+      "Column": 8,
+      "FrameNumber": 7,
+      "Function": "start_thread"
+    },
+    {
+      "SourceFile": "misc/../sysdeps/unix/sysv/linux/x86_64/clone3.S",
+      "Line": 78,
+      "Column": 0,
+      "FrameNumber": 8,
+      "Function": "clone3"
+    }
+  ],
+  "fuzz_test": "fuzz_csp_send"
+}
