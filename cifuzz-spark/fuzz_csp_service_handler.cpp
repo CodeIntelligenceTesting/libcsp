@@ -52,18 +52,21 @@ FUZZ_TEST(const uint8_t *data, size_t size) {
     }
 
     // Construct the packet with fuzzed data
-    csp_packet_t packet;
+    csp_packet_t * packet = csp_buffer_get_always();
+    if (!packet) {
+        return; // Failed to get a packet buffer
+    }
     //csp_id_setup_rx(&packet);
     //packet.id.flags = fdp.ConsumeIntegral<uint8_t>();
     auto packet_data = fdp.ConsumeBytes<uint8_t>(CSP_BUFFER_SIZE);
-    packet.length = packet_data.size();
+    packet->length = packet_data.size();
     if (packet_data.size() == 0 || packet_data.size() > CSP_BUFFER_SIZE) {
         return;
     }
-    std::memcpy(packet.data, packet_data.data(), packet_data.size());
+    std::memcpy(packet->data, packet_data.data(), packet_data.size());
     //csp_id_strip(&packet);
 
     // Pass the packet to the service handler
-    csp_service_handler(&packet);
+    csp_service_handler(packet);
 }
 
